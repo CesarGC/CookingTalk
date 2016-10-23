@@ -1,68 +1,66 @@
-@extends('layouts.app')
+    @extends('layouts.app')
 
-@section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Login</div>
-                <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
-                        {{ csrf_field() }}
-
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
-
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Password</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
-
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="remember"> Remember Me
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-8 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Login
-                                </button>
-
-                                <a class="btn btn-link" href="{{ url('/password/reset') }}">
-                                    Forgot Your Password?
-                                </a>
-                            </div>
-                        </div>
-                    </form>
+    @section('content')
+    <div id="contenedorPrincipal">
+        <div class="row">
+            <div id="contenedorLogin">
+                 <div id="contenedorLogotipo">
+                    <img src="../imagenes/CookingTalksMedium.png" id="logotipoCookingTalks" class="imgLogotipo" alt="Cooking Talks">
                 </div>
+                <div id="contenedorIngreso">
+                    <div id="contenedorCamposUsuario">
+                        <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
+                            {{ csrf_field() }}
+                            <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                                <p>
+                                    <label for="cuentaUsuario" class="auxCampoUsuario">Correo electrónico:</label> <br>
+                                    <input type="email" value="{{ old('email') }}" id="cuentaUsuario" class="campoUsuario" required>
+
+                                    @if ($errors->has('email'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('email') }}</strong>
+                                        </span>
+                                    @endif
+                                </p>
+                            </div>
+
+                            <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                                <p>
+                                    <label for="contraseniaUsuario" class="auxCampoUsuario">Contraseña:</label> <br>
+                                    <input type="password"  id="contraseniaUsuario" class="campoUsuario" name="password" required>
+
+                                    @if ($errors->has('password'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('password') }}</strong>
+                                        </span>
+                                    @endif
+                                </p>
+                            </div>
+
+                            <div class="form-group">
+                                    <!--<button type="submit" class="btn btn-primary">
+                                        Login
+                                    </button>-->
+
+                                    <div id="contenedorBtnIngreso">
+                                        <input type="submit" value="Ingresar" id="btnIngreso">
+                                    </div>
+
+                                    <div id="contenedorOpcionesAdicionales">
+                                        <p>
+                                            <span class="auxOcpionAdicional">¿Olvidaste tu contraseña?</span> <br>
+                                            <span>Vuelve a generarla accediendo </span><a class="btn btn-link" href="{{ url('/password/reset') }}">aquí.</a>
+                                        </p>
+                                        <p>
+                                            <span class="auxOcpionAdicional">¿Aún no tienes una cuenta?</span> <br>
+                                            <span>Puedes crearla fácilmente ingresando tus datos </span><a href="{{ url('/register') }}">aquí.</a>
+                                        </p>
+                                    </div>
+                            </div>
+                </form>
+                </div>
+            </div>
             </div>
         </div>
     </div>
-</div>
-@endsection
+    @endsection
