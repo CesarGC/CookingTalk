@@ -18,6 +18,13 @@ Route::get('/', function () {
 Route::get('/prueba', function () {
     return view('prueba', ['name' => 'César']);
 });
+
+Route::get('/listadoRecetas', 'BlogController@mostrarListado');
+
+Route::post('/listadoRecetas', 'BlogController@insertarBlog');
+
+Route::get('/crearBlogVista', 'BlogController@crearBlogVista');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
