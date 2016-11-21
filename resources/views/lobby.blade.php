@@ -15,7 +15,7 @@
         <div class="principalBar">
             <div class="contenedorBtnNuevoBlog campoHeader">
                 <!--<input type="button" value="Nuevo blog" class="btnNuevoBlog"/>-->
-                <a href="" class="btnNuevoBlog">
+                <a href="crearBlogVista" class="btnNuevoBlog">
                     <span>Nuevo blog</span>
                 </a>
             </div>

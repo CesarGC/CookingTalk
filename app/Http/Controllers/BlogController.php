@@ -8,8 +8,10 @@ use App\Http\Requests;
 use DB;
 use Input;
 use DateTime;
+use Auth;
 use App\Blog; 
-
+use Tymon\JWTAuth\Exceptions\JWTException;
+use Tymon\JWTAuth\JWTAuth;
 class BlogController extends Controller
 {
 
@@ -19,8 +21,8 @@ class BlogController extends Controller
 
     public function insertarBlog() {
     	//dd(Input::all());
+    	$user = Auth::User();
     	$datos = Input::all();
-    	echo $datos['title'];
     	$now = new DateTime();
     	//DB::table('Blog')->insert(
     	//	['title' => $datos['title'], 'summary' => $datos['summary'], 'idUser' => $datos['idUser'], 'content' => $datos['content'], 'category' => 'comida mexicana', 'created_at' => $now->format('Y-m-d H:i:s')]
@@ -28,11 +30,11 @@ class BlogController extends Controller
     	$modelo = new Blog;
     	$modelo->title = $datos['title'];
     	$modelo->summary = $datos['summary'];
-    	$modelo->idUser = $datos['idUser'];
+    	$modelo->idUser = $user->id;
     	$modelo->content = $datos['content'];
     	$modelo->category = 'comida mexicana';
     	$modelo->save();
-    	$vista = $this->mostrarListado();
+    	$vista = $this->mostrarLobby();
     	return $vista;
     }
 
@@ -42,6 +44,11 @@ class BlogController extends Controller
     	//echo $data;
 
 
+    }
+
+    public function mostrarLobby() {
+    	$recetas = DB::table('Blog')->get();
+    	return view('lobby', ['recetas' => $recetas]);
     }
 
     public function mostrarListado() {
