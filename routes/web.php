@@ -21,7 +21,13 @@ Route::get('/prueba', function () {
 
 Route::get('/listadoRecetas', 'BlogController@mostrarListado');
 
+Route::get('/detalleBlog/{detalle}', 'BlogController@mostrarDetalle');
+
 Route::post('/listadoRecetas', 'BlogController@insertarBlog');
+
+Route::delete('/listadoRecetas/{receta}', 'BlogController@borrarBlog');
+
+Route::put('/listadoRecetas/{receta}', 'BlogController@actualizarBlog');
 
 Route::get('/crearBlogVista', 'BlogController@crearBlogVista');
 

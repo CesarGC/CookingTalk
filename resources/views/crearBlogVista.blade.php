@@ -68,5 +68,69 @@
 
         <Button type="submit"> Insertar </Button>
 		{{ Form::close() }}
+
+		// enviar parametros cambiar prueba por id
+		{{ Form::open(['url' => ['listadoRecetas', 'dos'], 'method' => 'DELETE']) }}
+		<Button type="submit"> Borrar </Button>
+		{{ Form::close() }}
+
+
+
+
+
+
+		{{ Form::open(['url' => ['listadoRecetas', '9'], 'method' => 'PUT']) }}
+
+        {{ Form::text('title', null, array(
+    		'class' => '',
+    		'id' => '',
+    		'placeholder' => 'Titulo',
+			))
+		}}
+		<br>
+		<br>
+		{{ Form::text('summary', null, array(
+    		'class' => '',
+    		'id' => '',
+    		'placeholder' => 'Resumen',
+			))
+		}}
+		<br>
+		<br>
+		{{ Form::text('content', null, array(
+    		'class' => '',
+    		'id' => '',
+    		'placeholder' => 'Contenido',
+			))
+		}}
+		<br>
+		<br>
+		{{ Form::text('idCategory', null, array(
+    		'class' => '',
+    		'id' => '',
+    		'placeholder' => 'Categoria',
+			))
+		}}
+		<br>
+		<br>
+		{{ Form::text('created_at', null, array(
+    		'class' => '',
+    		'id' => '',
+    		'placeholder' => 'Creado',
+			))
+		}}
+		<br>
+		<br>
+		{{ Form::text('idUser', null, array(
+    		'class' => '',
+    		'id' => '',
+    		'placeholder' => 'idUsuario',
+			))
+		}}
+		<br>
+		<br>
+
+		<Button type="submit"> Actualizar </Button>
+		{{ Form::close() }}
     </body>
 </html>
