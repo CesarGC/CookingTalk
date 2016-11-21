@@ -12,11 +12,13 @@
 
         <!-- Styles -->
         <!--<link href="/css/app.css" rel="stylesheet">-->
-        <link href="/css/loginEstilo.css" rel="stylesheet">
-
+        <link href="/css/l-g-estilos.css" rel="stylesheet">
+        <link href="/css/w3.css" rel="stylesheet">
+        <link href="/css/font-awesome.min.css" rel="stylesheet">
 
         <!-- Scripts -->
         <script src="https://unpkg.com/vue/dist/vue.js"></script>
+        <script src="https://cdn.jsdelivr.net/vue.resource/1.0.3/vue-resource.min.js"></script>
         <script>
             window.Laravel = <?php echo json_encode([
                 'csrfToken' => csrf_token(),
