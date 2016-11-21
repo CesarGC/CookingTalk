@@ -36,12 +36,32 @@ class BlogController extends Controller
     	return $vista;
     }
 
-    public function borrarBlog() {
-    	echo 'borrarBlog';
+    public function borrarBlog($data) {
+    	$modelo = Blog::find(7);
+    	$modelo->delete();
+    	//echo $data;
+
+
     }
 
     public function mostrarListado() {
     	$recetas = DB::table('Blog')->get();
     	return view('listadoRecetas', ['recetas' => $recetas]);
+    }
+
+    public function mostrarDetalle($idBlog) {
+    	$modelo = Blog::find($idBlog);
+    	return view('detalleBlog', ['blog' => $modelo]);
+    }
+
+    public function actualizarBlog($id) {
+    	$modelo = Blog::find($id);
+    	$datos = Input::all();
+    	if(isset($datos['title']) || $datos['title'] != ' ') {
+    		$modelo->title = $datos['title'];
+    	}
+
+    	$modelo->save();
+    	echo $id;
     }
 }

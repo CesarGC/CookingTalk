@@ -19,6 +19,10 @@ Route::get('/prueba', function () {
     return view('prueba', ['name' => 'César']);
 });
 
+Route::get('/lobby', function () {
+    return view('lobby', ['name' => 'César']);
+});
+
 Route::get('/listadoRecetas', 'BlogController@mostrarListado');
 
 Route::get('/detalleBlog/{detalle}', 'BlogController@mostrarDetalle');
