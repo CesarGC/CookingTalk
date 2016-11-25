@@ -31,6 +31,9 @@ a{
 .imgLogotipo{
     width: 100%;
 }
+.imgLogotipoNav{
+    width: 60%;
+}
 .auxCampoUsuario{
     font-size: 16px;
     font-weight: 600;
@@ -93,10 +96,9 @@ a{
     background-color: #fff;
     position: fixed!important;
     overflow: auto;
-    background-color: #f1f1f1!important;
     border-top: 1px solid #ccc!important;
 }
-.menuOpc{
+/*.menuOpc{
     display: block;
     padding: 8px 16px 8px;
     -webkit-transition: background-color .3s,color .15s,box-shadow .3s,opacity 0.3s,filter 0.3s;
@@ -109,20 +111,18 @@ a{
 .menuOpc:hover{
     background-color: #4CAF50;
     color: #fff;
-}
+}*/
 #contenedorLobby{
     margin-left: 300px;
-    background-color: #658AC2;
+    background-color: cornflowerblue;
     height: 100vh;
 }
 .principalBar{
     top: 0;
     position: fixed;
-    width: 78%;
+    width: 79%;
     z-index: 1;
     padding: 15px;
-    background-color: white;
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19)!important;
 }
 .contenedorBusqueda{
     text-align: right;
@@ -130,32 +130,31 @@ a{
 .campoHeader{
     display: inline-block;
     vertical-align: middle;
-    width: 49%;
+    width: 49.8%;
 }
 .btnNuevoBlog, #btnBuscar{
-    background-color: #4CAF50;
-    padding: 8px;
-    color: white;
-    text-decoration: none;
-        font-size: 15px;
-    border-radius: 3px;
-    border:none;
+    font-size: 15px;
 }
 #contenedorLogMini{
-    width: 60%;
-    margin: 5px auto;
+    position: absolute;
+    bottom: 0;
+    padding: 10px;
+    text-align: right;
 }
 .menuOpciones{
     font-size: 16px;
     font-weight: 600;
-    margin-top: 15px;
+    margin: 10px;
 }
 #campoBusqueda{
-    width: 70%;
-    border: 2px solid #ccc!important;
-    padding: 8px;
-    font-size: 15px;
-    border-radius: 5px;
+    display: inline-block;
+    vertical-align: middle;
+    width: 75%;
+    height: 43px;
+    padding: 6px 16px;
+    font-size: 18px;
+    border-radius: 4px;
+    border-style: none;
 }
 #mainVistaPerfil{
     font-family: Arial;
@@ -223,4 +222,24 @@ a{
 }
 .logotipoPerfil{
     width: 260px;
+}
+.btnNuevoBlogItem, .btnBuscarBlogItem{
+    display: inline-block;
+    vertical-align: middle;
+}
+.btnNuevoBlogTitulo, .btnBuscarBlogTitulo{
+    font-size: 18px;
+    font-weight: 600;
+    padding-left: 10px;
+}
+#contenedorPerfilPreview{
+    margin: 10px;
+    padding: 10px;
+    text-align: center;
+    color: cornflowerblue;
+}
+#contenedorLinkPerfil{
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: 600;
 }
