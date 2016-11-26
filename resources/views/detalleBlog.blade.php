@@ -1,163 +1,101 @@
 <html>
-	<HEAD>
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.10/vue.js"></script>
-<script src="https://cdn.jsdelivr.net/vue.resource/1.0.3/vue-resource.min.js"></script>
-<style type=”text/css”>
-body {
-  font-family: 'Helvetica Neue', Arial, sans-serif;
-  font-size: 12px;
-  color: #393939;
-  text-align: center;
-}
-* {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -ms-box-sizing: border-box;
-  box-sizing: border-box;
-}
-
-#slider {
-  max-width: 600px;
-  text-align: center;
-  margin: 0 auto;
-}
-
-#overflow {
-  width: 100%;
-  overflow: hidden;
-}
-
-#slides .inner {
-  width: 400%;
-}
-
-#slides .inner {
-  -webkit-transform: translateZ(0);
-  -moz-transform: translateZ(0);
-  -o-transform: translateZ(0);
-  -ms-transform: translateZ(0);
-  transform: translateZ(0);
-
-  -webkit-transition: all 800ms cubic-bezier(0.770, 0.000, 0.175, 1.000);
-  -moz-transition: all 800ms cubic-bezier(0.770, 0.000, 0.175, 1.000);
-  -o-transition: all 800ms cubic-bezier(0.770, 0.000, 0.175, 1.000);
-  -ms-transition: all 800ms cubic-bezier(0.770, 0.000, 0.175, 1.000);
-  transition: all 800ms cubic-bezier(0.770, 0.000, 0.175, 1.000);
-
-  -webkit-transition-timing-function: cubic-bezier(0.770, 0.000, 0.175, 1.000);
-  -moz-transition-timing-function: cubic-bezier(0.770, 0.000, 0.175, 1.000);
-  -o-transition-timing-function: cubic-bezier(0.770, 0.000, 0.175, 1.000);
-  -ms-transition-timing-function: cubic-bezier(0.770, 0.000, 0.175, 1.000);
-  transition-timing-function: cubic-bezier(0.770, 0.000, 0.175, 1.000);
-}
-
-#slides article {
-  width: 25%;
-  float: left;
-}
-
-#slide1:checked ~ #slides .inner {
-  margin-left: 0;
-}
-
-#slide2:checked ~ #slides .inner {
-  margin-left: -100%;
-}
-
-#slide3:checked ~ #slides .inner {
-  margin-left: -200%;
-}
-
-#slide4:checked ~ #slides .inner {
-  margin-left: -300%;
-}
-
-input[type="radio"] {
-  display: none;
-}
-
-label {
-  background: #CCC;
-  display: inline-block;
-  cursor: pointer;
-  width: 10px;
-  height: 10px;
-  border-radius: 5px;
-}
-
-#slide1:checked ~ label[for="slide1"],
-#slide2:checked ~ label[for="slide2"],
-#slide3:checked ~ label[for="slide3"],
-#slide4:checked ~ label[for="slide4"] {
-  background: #333;
-}
-</style>
-
-	    
-<script type="text/javascript">
-
-
-window.onload = function () {
-Vue.component('img-slider', {
-  template: '#img-slider-template',
-})
-// boot up demo
-new Vue({
-  el: '#demo'
-})
-}
-
-
-</script>
+<HEAD>
+ <meta name="token" id="token" value="{{ csrf_token() }}">
 </HEAD>
 <body>
 
-<div>
+  <div>
     <a>{{ $blog['title'] }}</a>
+    <br>
+    <br>
     <a>{{ $blog['summary'] }}</a>
+    <br>
+    <br>
     <a>{{ $blog['content'] }}</a>
-</div>
-<script type="text/x-template" id="img-slider-template">
-  	<div id="slider">
-    <input checked="" type="radio" name="slider" id="slide1" selected="false">
-    <input type="radio" name="slider" id="slide2" selected="false">
-    <input type="radio" name="slider" id="slide3" selected="false">
-    <input type="radio" name="slider" id="slide4" selected="false">
-    <div id="slides">
-      <div id="overflow">
-        <div class="inner">
-          <article>
-            <content select="img:nth-of-type(1)"></content>
-          </article>
-          <article>
-            <content select="img:nth-of-type(2)"></content>
-          </article>
-          <article>
-            <content select="img:nth-of-type(3)"></content>
-          </article>
-          <article>
-            <content select="img:nth-of-type(4)"></content>
-          </article>
-        </div> <!-- .inner -->
-      </div> <!-- #overflow -->
-    </div>
-    <label for="slide1"></label>
-    <label for="slide2"></label>
-    <label for="slide3"></label>
-    <label for="slide4"></label>
   </div>
+  <div>
+    <br>
+    <br>
+    <div id="divButton"> 
+      <a> Comentarios </a>
+      <br>
+      <textarea id="comentarioNuevo" placeholder="Escribe un comentario"></textarea>
+      <br>
+      <br>
+      <button
+      v-on:click="insertarCommentario(blog)"
+      > Actualizar </button>
 
-</script>
+    </div>
+    <ul files="{{ $blog['comments'] }}" id="example-1">
+      <li v-for="item in items">
+        <div style="width:32px; height:32px; border: 1px solid; display: inline-block;"></div>
+        <a href=""> @{{ item['nombreUsuario']}} </a>
+        <br>
+        <a href="detalleBlog/@{{item['idBlog']}}">@{{ item['comment'] }}</a>
+      </li>
+    </ul>
 
-    <div id="demo">
-  <img-slider>
-    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/5689/rock.jpg">
-    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/5689/grooves.jpg">
-    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/5689/arch.jpg">
-    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/5689/sunset.jpg">
-  </img-slider>
-</div>
+  </div>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.10/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/vue.resource/1.0.3/vue-resource.min.js"></script>
+  <script type="text/javascript">
 
-    </body>
+      var currency = <?php echo $blog['comments']; ?>;
+      var infoBlog = <?php echo $blog['idBlog']; ?>;
+      var currentComment = document.getElementById("comentarioNuevo").value;
 
-</html>
+      var example1 = new Vue({
+        el: '#example-1',
+        props: ['files'],
+        data: {
+          items: currency
+        },
+        methods: {
+        }
+      });
+
+
+      var divButton = new Vue({
+        el: '#divButton',
+        http: {
+            root: '/root',
+            headers: {
+                'X-CSRF-TOKEN': document.querySelector('#token').getAttribute('value')
+            }
+        },
+        data: {
+          blog: infoBlog
+        },
+        methods: {
+          insertarCommentario: function(comment) {
+            currentComment = document.getElementById("comentarioNuevo").value;
+            console.log(currentComment);
+            this.$http.post('/crearComentario', {comentario: 'bar', idBlog: '1'}, function(data) {
+              console.log(data);
+            }).then((response) => {
+
+    // get status
+    response.status;
+
+    // get status text
+    response.statusText;
+
+    // get 'Expires' header
+    response.headers.get('Expires');
+
+    console.log(response.body);
+    // set data on vm
+    //this.$set('someData', response.body);
+
+  }, (response) => {
+
+    // error callback
+  });
+          }
+        }
+      });
+    </script>
+  </body>
+
+  </html>
