@@ -159,32 +159,32 @@ a{
 #mainVistaPerfil{
     font-family: Arial;
     height: 100vh;
-    background-color: #658AC2;
+    background-color: cornflowerblue;
 }
 .headerPerfil{
-    padding: 0.01em 16px;
+    padding: 10px 25px;
     background-color: #fff!important;
-    color: #658AC2!important;
-        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19)!important;
+    color: cornflowerblue!important;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19)!important;
 }
 .headerPerfil:after{
     content: "";
     display: table;
     clear: both;
 }
+#contenedorUsuarioData{
+    padding: 25px 15px;
+}
 .contenedorPerfilUsuario{
     width: 50%;
-    padding: 0.01em 16px;
-    margin-top: 24px!important;
-    margin-left: 16px;
+    padding: 10px;
     background-color: #fff;
     border-radius: 10px;
-        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19)!important
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19)!important;
 }
 .labelPerfil{
-        font-size: 18px;
+    font-size: 18px;
     font-weight: 600;
-    color: #98171D;
 }
 .camposPerfil{
     padding: 8px;
@@ -192,24 +192,22 @@ a{
     border: none;
     border-bottom: 2px solid #808080;
     width: 98%;
+    font-size: 18px;
+    color: grey;
 }
 .btnOpc{
     display: inline-block;
     vertical-align: middle;
-    width: 49%;
     text-align: center;
 }
-.btnCambiarData{
-    color: #fff!important;
-    background-color: #4CAF50!important;
-    border:none;
-    text-decoration: none;
-    font-size: 16px;
-    padding: 8px;
-    font-weight: 600;
+.opcActualizar{
+    width: 42%;
 }
-.btnCambiarData:hover{
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+.btnCambiarData{
+    border:none;
+    font-size: 18px;
+    padding: 10px;
+    font-weight: 600;
 }
 .headerTitle{
         display: inline-block;
@@ -218,10 +216,9 @@ a{
 }
 .logoSide{
     text-align: -webkit-right;
-    margin: 5px;
 }
 .logotipoPerfil{
-    width: 260px;
+    width: 180px;
 }
 .btnNuevoBlogItem, .btnBuscarBlogItem{
     display: inline-block;
@@ -242,4 +239,17 @@ a{
     margin-top: 10px;
     font-size: 18px;
     font-weight: 600;
+}
+#contenedorAvatarPerfil{
+    padding: 10px 0;
+}
+#contenedorAvatarPerfil .campoEdicionAvatar{
+    display: inline-block;
+    vertical-align: middle;
+    width: 25%;
+    text-align: center;
+}
+.itemDataChange{
+    display: inline-block;
+    vertical-align: middle;
 }
