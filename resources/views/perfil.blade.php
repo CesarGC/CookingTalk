@@ -6,7 +6,9 @@
 		<div class="headerTitle"><h1>Perfíl de usuario</h1></div>
 		<div class="headerTitle logoSide">
 			<div class="logotipoPerfil">
-				<img src="../imagenes/CookingTalksMedium.png" id="logotipoCookingTalks" class="imgLogotipo" alt="Cooking Talks">
+				<a href="{{ url('/lobby') }}">
+					<img src="../imagenes/CookingTalksMedium.png" id="logotipoCookingTalks" class="imgLogotipo" alt="Volver al lobby">
+				</a>
 			</div>
 		</div>
 	</header>
@@ -40,9 +42,6 @@
 				</p>
 				<p class="btnOpc opcCambiatContra">
 					<button id="btnActiaulizarContra" class="btnCambiarData w3-round w3-green w3-hover-deep-orange"><i class="fa fa-exchange fa-2x itemDataChange" aria-hidden="true"></i> <span class="itemDataChange">Cambiar contraseña</span></button>
-					<!--<a href="{{ url('/password/reset') }}" class="btnCambiarData">
-						<span>Cambiar contraseña</span>
-					</a>-->
 				</p>
 			</div>
 		</div>
