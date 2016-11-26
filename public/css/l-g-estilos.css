@@ -156,9 +156,9 @@ a{
     border-radius: 4px;
     border-style: none;
 }
-#mainVistaPerfil{
+#mainVistaPerfil, #mainVistaCrearBlog{
     font-family: Arial;
-    height: 100vh;
+    min-height: 100vh;
     background-color: cornflowerblue;
 }
 .headerPerfil{
@@ -252,4 +252,33 @@ a{
 .itemDataChange{
     display: inline-block;
     vertical-align: middle;
+}
+#contenedorCreacionBlog{
+    max-width: 1048px;
+    margin: 25px auto;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 10px;
+}
+#contenedorBtnCrearBlog{
+    text-align: center;
+}
+#contenedorBtnCrearBlog .itemCrearBlog{
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 5px;
+}
+.auxCampoCrearBlog{
+    display: inline-block;
+    padding: 5px 10px;
+    margin-bottom: 10px;
+    font-size: 20px;
+    font-weight: 600;
+}
+.campoCreacionBlog{
+    font-size: 16px;
+}
+#btnCrearBlog{
+    font-size: 20px;
+    font-weight: 600;
 }
