@@ -32,6 +32,8 @@
         <div style="width:32px; height:32px; border: 1px solid; display: inline-block;"></div>
         <a href=""> @{{ item['nombreUsuario']}} </a>
         <br>
+        <a href=""> @{{ item['created_at']}} </a>
+        <br>
         <a href="detalleBlog/@{{item['idBlog']}}">@{{ item['comment'] }}</a>
       </li>
     </ul>
@@ -72,7 +74,7 @@
           insertarCommentario: function(comment) {
             currentComment = document.getElementById("comentarioNuevo").value;
             console.log(currentComment);
-            this.$http.post('/crearComentario', {comentario: 'bar', idBlog: '1', idUser: '@{{Auth::User()->id}}'}, function(data) {
+            this.$http.post('/crearComentario', {comentario: currentComment, idBlog: infoBlog, idUser: '@{{Auth::User()->id}}'}, function(data) {
               console.log(data);
             }).then((response) => {
 
@@ -85,7 +87,7 @@
     // get 'Expires' header
     response.headers.get('Expires');
 
-    console.log(response.body);
+    currency.push(response.body);
     // set data on vm
     //this.$set('someData', response.body);
 

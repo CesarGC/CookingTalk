@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Illuminate\Http\Response;
 use App\Comment;
 use Auth;
 use Tymon\JWTAuth\Exceptions\JWTException;
@@ -14,7 +15,7 @@ class ComentarioController extends Controller
 {
 	public function insertarComment(Request $request) {
     	//dd(Input::all());
-    	$user = Auth::User();
+		$user = Auth::User();
 		//$datos = Input::all();
 		//$now = new DateTime();
     	//DB::table('Blog')->insert(
@@ -27,8 +28,11 @@ class ComentarioController extends Controller
 		//$modelo->content = $datos['content'];
 		//$modelo->category = 'comida mexicana';
 		$modelo->save();
-		 echo $modelo;
-		//return Response::json(array('email' => $email),200);
+
+		$user = Comment::find($modelo->idUser)->user;
+		$modelo->{"nombreUsuario"} = $user['name'];
+
+		return response($modelo,200);
 	}
     //
 }
