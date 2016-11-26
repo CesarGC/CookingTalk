@@ -10,6 +10,7 @@ use Input;
 use DateTime;
 use Auth;
 use App\Blog; 
+use App\Comment; 
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\JWTAuth;
 class BlogController extends Controller
@@ -57,8 +58,23 @@ class BlogController extends Controller
     }
 
     public function mostrarDetalle($idBlog) {
+    	$user = Auth::User();
     	$modelo = Blog::find($idBlog);
+    	$comments = Blog::find($idBlog)->comments;
+    	foreach ($comments as $comment) {
+    		$user = Comment::find($comment['idUser'])->user;
+    		$comment->{"nombreUsuario"} = $user['name'];
+    	}
+
+    	$modelo->{"comments"} = $comments;
+
+    	//echo $modelo;
     	return view('detalleBlog', ['blog' => $modelo]);
+    }
+
+    public function editarDetalle($data) {
+    	$modelo = Blog::find($data);
+    	return view('editarBlogVista', ['blog' => $modelo]);
     }
 
     public function actualizarBlog($id) {

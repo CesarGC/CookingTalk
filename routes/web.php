@@ -19,6 +19,10 @@ Route::get('/prueba', function () {
     return view('prueba', ['name' => 'César']);
 });
 
+Route::get('/perfil', function () {
+    return view('perfil', ['name' => 'César']);
+});
+
 Route::get('/lobby', function () {
     return view('lobby', ['name' => 'César']);
 });
@@ -29,11 +33,17 @@ Route::get('/detalleBlog/{detalle}', 'BlogController@mostrarDetalle');
 
 Route::post('/listadoRecetas', 'BlogController@insertarBlog');
 
+Route::post('/crearComentario', 'ComentarioController@insertarComment');
+
+
+
 Route::delete('/listadoRecetas/{receta}', 'BlogController@borrarBlog');
 
 Route::put('/listadoRecetas/{receta}', 'BlogController@actualizarBlog');
 
 Route::get('/crearBlogVista', 'BlogController@crearBlogVista');
+
+Route::get('/editarBlogVista/{receta}', 'BlogController@editarDetalle');
 
 Auth::routes();
 

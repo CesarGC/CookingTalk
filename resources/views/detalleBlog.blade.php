@@ -37,6 +37,7 @@
     </ul>
 
   </div>
+
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.10/vue.js"></script>
   <script src="https://cdn.jsdelivr.net/vue.resource/1.0.3/vue-resource.min.js"></script>
   <script type="text/javascript">
@@ -71,7 +72,7 @@
           insertarCommentario: function(comment) {
             currentComment = document.getElementById("comentarioNuevo").value;
             console.log(currentComment);
-            this.$http.post('/crearComentario', {comentario: 'bar', idBlog: '1'}, function(data) {
+            this.$http.post('/crearComentario', {comentario: 'bar', idBlog: '1', idUser: '@{{Auth::User()->id}}'}, function(data) {
               console.log(data);
             }).then((response) => {
 
