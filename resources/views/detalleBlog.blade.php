@@ -1,38 +1,64 @@
 <html>
 <HEAD>
  <meta name="token" id="token" value="{{ csrf_token() }}">
+ <link href="/css/l-g-estilos.css" rel="stylesheet">
+ <link href="/css/w3.css" rel="stylesheet">
+ <link href="/css/font-awesome.min.css" rel="stylesheet">
 </HEAD>
 <body>
 
-  <div>
-    <a>{{ $blog['title'] }}</a>
-    <br>
-    <br>
-    <a>{{ $blog['summary'] }}</a>
-    <br>
-    <br>
-    <a>{{ $blog['content'] }}</a>
+  <div id="contenedorBlog">
+    <header class="headerPerfil w3-animate-top">
+    <div class="headerTitle"><h1>{{ $blog['title'] }}</h1></div>
+    <div class="headerTitle logoSide">
+      <div class="logotipoPerfil">
+        <a href="{{ url('/lobby') }}">
+          <img src="../imagenes/CookingTalksMedium.png" id="logotipoCookingTalks" class="imgLogotipo" alt="Volver al lobby">
+        </a>
+      </div>
+    </div>
+  </header>
+  <div id="contenedorMainBlog" class="w3-row-padding">
+  <div class="w3-third w3-animate-left">
+    <div class="blogImgItem">
+    </div>
+    <div class="blogImgItem">
+    </div>
+    <div class="blogImgItem">
+    </div>
   </div>
-  <div>
+  <div class="w3-twothird w3-white w3-round w3-animate-right">
+    <!--<a>{{ $blog['title'] }}</a>
+    <br>
+    <br>-->
+    <div id="contenedorBlogSummary" class="w3-border-bottom">
+      <h1>{{ $blog['summary'] }}</h1>
+    </div>
     <br>
     <br>
-    <div id="divButton"> 
-      <a> Comentarios </a>
+    <div id="contenedorBlogContent">
+      <p>{{ $blog['content'] }}</p>
+    </div>
+  </div>
+</div>
+  </div>
+  <div id="contenedorComentariosMain" class="w3-white w3-round w3-light-grey">
+    <div class="comentariosHeader w3-green">
+      <i class="fa fa-commenting fa-2x itemSeccionComentario" aria-hidden="true"></i><span class="itemSeccionComentario"> Comentarios</span>
+    </div>
+    <div id="divButton" class="userCommentario"> 
       <br>
-      <textarea id="comentarioNuevo" placeholder="Escribe un comentario"></textarea>
+      <div style="width:60px; height:60px; border: 1px solid; display: inline-block;"></div>
+      <textarea id="comentarioNuevo" rows="4" cols="50" placeholder="Escribe un comentario"></textarea>
       <br>
-      <br>
-      <button
-      v-on:click="insertarCommentario(blog)"
-      > Actualizar </button>
+      <button v-on:click="insertarCommentario(blog)" class="w3-btn w3-deep-orange"> Publicar </button>
 
     </div>
-    <ul files="{{ $blog['comments'] }}" id="example-1">
-      <li v-for="item in items">
-        <div style="width:32px; height:32px; border: 1px solid; display: inline-block;"></div>
-        <a href=""> @{{ item['nombreUsuario']}} </a>
-        <br>
-        <a href=""> @{{ item['created_at']}} </a>
+    <ul files="{{ $blog['comments'] }}" id="example-1" class="w3-ul w3-card-4">
+      <li v-for="item in items" class="w3-padding-16 w3-white">
+        <div class="w3-left w3-margin-right" style="width:60px; height:60px; border:1px solid;"></div>
+        <a href="" class="w3-xlarge"> @{{ item['nombreUsuario']}} </a>
+        <span href=""> @{{ item['created_at']}} </span>
         <br>
         <a href="detalleBlog/@{{item['idBlog']}}">@{{ item['comment'] }}</a>
       </li>
