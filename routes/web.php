@@ -19,9 +19,24 @@ Route::get('/prueba', function () {
     return view('prueba', ['name' => 'César']);
 });
 
-Route::get('/perfil', function () {
-    return view('perfil', ['name' => 'César']);
+Route::get('/login', function () {
+    return view('login', ['name' => 'César']);
 });
+
+Route::group(array('before' => 'auth'), function() {
+
+    /*
+     | Sign Out (GET)
+     | --
+     */
+    Route::get('/account/sign-out', array(
+        'as' => 'account-sign-out',
+        'uses' => 'AccountController@getSignOut'
+    ));
+
+});
+
+Route::get('/perfil', 'PerfilController@modificarDatos');
 
 Route::get('/lobby', function () {
     return view('lobby', ['name' => 'César']);
@@ -31,11 +46,11 @@ Route::get('/listadoRecetas', 'BlogController@mostrarListado');
 
 Route::get('/detalleBlog/{detalle}', 'BlogController@mostrarDetalle');
 
-Route::post('/listadoRecetas', 'BlogController@insertarBlog');
+Route::post('/listadoRecetas', 'BlogController@insertarBlog')->middleware('auth');
 
-Route::post('/crearComentario', 'ComentarioController@insertarComment');
+Route::post('/crearComentario', 'ComentarioController@insertarComment')->middleware('auth');
 
-
+Route::post('/editarPerfil', 'PerfilController@editarPerfil');
 
 Route::delete('/listadoRecetas/{receta}', 'BlogController@borrarBlog');
 
@@ -47,4 +62,8 @@ Route::get('/editarBlogVista/{receta}', 'BlogController@editarDetalle');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index');
+Route::get('/auth/logout', 'Auth\LoginController@logout');
+
+Route::get('/home', function () {
+    return view('lobby', ['name' => 'César']);
+});

@@ -3,11 +3,15 @@
 @section('content')
 <div id="mainLobby">
     <nav id="menuPrincipal" class="w3-animate-left w3-card-2">
-        <a href="" class="">
+        <a href="/perfil" class="">
             <div id="contenedorPerfilPreview" class="w3-container w3-section w3-border-top w3-border-bottom w3-hover-light-grey w3-hover-text-blue">
                 <div id="contenedorAvatarImg">
                     <!-- Imagen del perfil del usuario -->
-                    <i class="fa fa-user-circle-o fa-5x" aria-hidden="true"></i>
+                    @if(empty($usuario['avatar']))
+                    <i class="fa fa-user-circle-o fa-5x" area-hidden="true"></i>
+                    @else
+                    <img src="data:{{$usuario['avatar']}};base64,{{$usuario['avatar']}}" id="logotipoCookingTalks" class="imgLogotipo" alt="Volver al lobby" style="width: 72px; height: 72px">
+                    @endif
                 </div>
                 <div id="contenedorLinkPerfil">
                     <span>Mi Perfíl</span>
@@ -16,7 +20,7 @@
         </a>
         <div class="menuOpciones">
             <!--<a href="{{ url('/perfil') }}" class="menuOpc">Perfíl</a>-->
-            <a href="#" class="menuOpc w3-btn-block w3-orange w3-text-white">Cerrar sesión</a>
+            <a href="{{ url('/auth/logout') }}" class="menuOpc w3-btn-block w3-orange w3-text-white">Cerrar sesión</a>
         </div>
         <div id="contenedorLogMini">
             <img src="../imagenes/CookingTalksMedium.png" id="logotipoCookingTalks" class="imgLogotipoNav" alt="Cooking Talks">
