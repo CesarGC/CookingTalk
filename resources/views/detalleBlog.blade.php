@@ -56,7 +56,9 @@
     </div>
     <ul files="{{ $blog['comments'] }}" id="example-1" class="w3-ul w3-card-4">
       <li v-for="item in items" class="w3-padding-16 w3-white">
-        <div class="w3-left w3-margin-right" style="width:60px; height:60px; border:1px solid;"></div>
+        <div class="w3-left w3-margin-right" style="width:60px; height:60px; border:1px solid;">
+          <img  style='background-color: #00ff00;  width:60px; height:60px; object-fit: contain' src="data:@{{item['avatar']}};base64,@{{item['avatar']}}"/>
+        </div>
         <a href="" class="w3-xlarge"> @{{ item['nombreUsuario']}} </a>
         <span href=""> @{{ item['created_at']}} </span>
         <br>

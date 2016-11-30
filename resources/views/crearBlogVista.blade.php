@@ -24,6 +24,14 @@
 		</div>
 	</header>
 	<div id="contenedorCreacionBlog" class="w3-container w3-card-4 w3-light-grey w3-animate-bottom">
+<?php $nombreCategoria;
+	  $idCategoria;
+	foreach ($categoria as $catego) {
+		$nombreCategoria[] = $catego['nombre'];
+		$idCategoria[] = $catego['idCategoria'];
+	}
+ ?>
+
 		{{ Form::open(array('url' => 'listadoRecetas', 'method' => 'POST')) }}
 		<p>
 			<label for="newTituloBlog" class="auxCampoCrearBlog w3-text-green w3-white w3-leftbar w3-border w3-border-green"><i class="fa fa-cutlery fa-2x" aria-hidden="true"></i> <span>Título :</span></label>
@@ -54,29 +62,8 @@
 		</p>
 		<p>
 			<label for="newResumenBlog" class="auxCampoCrearBlog w3-text-green w3-white w3-leftbar w3-border w3-border-green"><i class="fa fa-cutlery fa-2x" aria-hidden="true"></i> <span>Categoría :</span></label>
-			{{ Form::text('idCategory', null, array(
-				'class' => 'campoCreacionBlog w3-input w3-border w3-white w3-leftbar w3-border-blue w3-text-grey',
-				'id' => 'newCategoriaBlog',
-				//'placeholder' => 'Categoria',
-				))
-			}}
-		</p>
-		<p>
-			<label for="newCreadorBlog" class="auxCampoCrearBlog">Creador :</label>
-			{{ Form::text('created_at', null, array(
-				'class' => 'campoCreacionBlog w3-input w3-border',
-				'id' => 'newCreadoBlog',
-				//'placeholder' => 'Creado',
-				))
-			}}
-		</p>
-		<p>
-			<label for="usuarioCreador" class="auxCampoCrearBlog">idUsuarioCreador :</label>
-			{{ Form::text('idUser', null, array(
-				'class' => 'campoCreacionBlog w3-input w3-border',
-				'id' => 'usuarioCreador',
-				//'placeholder' => 'idUsuario',
-				))
+			{{ Form::select('idCategory', $nombreCategoria
+    			, $idCategoria, array('class' => 'campoCreacionBlog w3-input w3-border w3-white w3-leftbar w3-border-blue w3-text-grey', 'id' => 'idCategoria'))
 			}}
 		</p>
 		<div id="contenedorBtnCrearBlog">

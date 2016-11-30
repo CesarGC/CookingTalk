@@ -16,11 +16,10 @@ class Comment extends Migration
         Schema::create('Comment', function (Blueprint $table) {
             $table->increments('idComment');
             $table->string('comment', 2000);
-            $table->date('date_comment');
             $table->integer('idUser')->unsigned();
             $table->integer('idBlog')->unsigned();
             
-            $table->foreign('idUser')->references('idUser')->on('User');
+            $table->foreign('idUser')->references('id')->on('users');
             $table->foreign('idBlog')->references('idBlog')->on('Blog');
             $table->timestamps();
         });

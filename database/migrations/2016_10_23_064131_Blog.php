@@ -18,11 +18,12 @@ class Blog extends Migration
             $table->string('title',500);
             $table->string('summary',2000);
             $table->string('content',10000);
-            $table->string('category',100);
             $table->timestamps();
             $table->integer('idUser')->unsigned();
+            $table->integer('idCategoria')->unsigned();
             
-            $table->foreign('idUser')->references('idUser')->on('User');
+            $table->foreign('idUser')->references('id')->on('users');
+            $table->foreign('idCategoria')->references('idCategoria')->on('Categoria');
         });
     }
 

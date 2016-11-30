@@ -18,10 +18,10 @@ class PerfilController extends Controller
 	public function editarPerfil() {
 		$user = Auth::User();
 		$datos = Input::all();
-		dd(Input::all());
 		$f = Input::file('thefile');
 		$att = Users::find($user['id']);
 		$att->avatar = base64_encode(file_get_contents($f->getRealPath()));
+		echo var_dump($att);
 		$att->save();
 	}
 }

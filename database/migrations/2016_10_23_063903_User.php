@@ -19,6 +19,7 @@ class User extends Migration
             $table->string('lastName',150);
             $table->string('nickName',100);
             $table->string('email')->unique();
+            $table->string('password');
             $table->date('birthName');
             $table->timestamps();
         });

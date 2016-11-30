@@ -16,4 +16,9 @@ class Blog extends Model
         return $this->hasMany('App\Comment', 'idBlog');
     }
 
+        public function categoria()
+    {
+        return $this->hasOne('App\Categoria', 'idCategoria');
+    }
+
 }
