@@ -32,7 +32,7 @@
 	}
  ?>
 
-		{{ Form::open(array('url' => 'listadoRecetas', 'method' => 'POST')) }}
+		{{ Form::open(array('url' => 'listadoRecetas', 'method' => 'POST', 'files'=>true)) }}
 		<p>
 			<label for="newTituloBlog" class="auxCampoCrearBlog w3-text-green w3-white w3-leftbar w3-border w3-border-green"><i class="fa fa-cutlery fa-2x" aria-hidden="true"></i> <span>Título :</span></label>
 			{{ Form::text('title', null, array(
@@ -65,6 +65,13 @@
 			{{ Form::select('idCategory', $nombreCategoria
     			, $idCategoria, array('class' => 'campoCreacionBlog w3-input w3-border w3-white w3-leftbar w3-border-blue w3-text-grey', 'id' => 'idCategoria'))
 			}}
+		</p>
+		<p>
+			{{ Form::file('foto1', array(
+				'class' => 'campoCreacionBlog w3-input w3-border w3-white w3-leftbar w3-border-blue w3-text-grey',
+				'id' => 'newContenidoBlog',
+				'value' => 'modificar'
+				)) }}
 		</p>
 		<div id="contenedorBtnCrearBlog">
 			<button type="submit" id="btnCrearBlog" class="w3-btn w3-round w3-blue"><i class="fa fa-check-circle-o fa-3x itemCrearBlog" aria-hidden="true"></i><span class="itemCrearBlog">Crear Blog</span></Button>

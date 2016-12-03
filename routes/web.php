@@ -11,6 +11,8 @@
 |
 */
 
+//Storage::disk('uploads')->put('filename', $file_content);
+
 Route::get('/', function () {
     return view('welcome');
 });

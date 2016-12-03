@@ -13,6 +13,7 @@ use App\Blog;
 use App\Comment; 
 use App\Categoria; 
 use App\Users;
+use App\Image;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\JWTAuth;
 use Illuminate\Http\Response;
@@ -40,6 +41,21 @@ class BlogController extends Controller
 
        //$modelo->category = 'comida mexicana';
      $modelo->save();
+     if (Input::hasFile('foto1'))
+     {
+         $foto = Input::file('foto1');
+         $imageName = $modelo->title . '.' . 
+         $foto->getClientOriginalExtension();
+
+         $foto->move(
+            base_path() . '/public/imagenes', $imageName
+            );
+         $image = new Image;
+         $image->urlImage = "imagenes/".$imageName;
+         $image->idBlog = $modelo->idBlog;
+         $image->save();
+     }
+
      $vista = $this->mostrarLobby();
      return $vista;
        //echo var_dump($datos);
@@ -49,38 +65,47 @@ class BlogController extends Controller
      $modelo = Blog::find(7);
      $modelo->delete();
     	//echo $data;
-
-
  }
 
  public function mostrarLobby() {
-     $recetas = DB::table('Blog')->get();
-     return view('lobby', ['recetas' => $recetas]);
- }
-
- public function mostrarListado() {
-     $recetas = DB::table('Blog')->get();
-     return view('listadoRecetas', ['recetas' => $recetas]);
- }
-
- public function mostrarDetalle($idBlog) {
-     $modelo = Blog::find($idBlog);
-     $user = Auth::User();
-    if($modelo) {
-        $comments = Blog::find($idBlog)->comments;
-        foreach ($comments as $comment) {
-          $user = Comment::find($comment['idUser'])->user;
-          $comment->{"nombreUsuario"} = $user['name'];
-          $comment->{"avatar"} = $user['avatar'];
-      }
-
-      $modelo->{"comments"} = $comments;
-    	//echo $modelo;
-      if(isset($user)) {
-        return view('detalleBlog', ['blog' => $modelo, 'usuario' =>$user]);
-    } else {
-        return view('detalleBlog', ['blog' => $modelo]);
+     $recetas = Blog::all();
+     $imagenes;
+     foreach ($recetas as $receta) {
+        $receta{'user'} = Users::find($receta->idUser);
+        $imagenes = Image::where('idBlog', $receta->idBlog)->first();
+        if($imagenes !== null) {
+            $receta{'imagen'} = $imagenes->urlImage;
+        } else {
+            $receta{'imagen'} = null;
+        }
+        
     }
+    return view('lobby', ['recetas' => $recetas]);
+}
+
+public function mostrarListado() {
+ $recetas = DB::table('Blog')->get();
+ return view('listadoRecetas', ['recetas' => $recetas]);
+}
+
+public function mostrarDetalle($idBlog) {
+ $modelo = Blog::find($idBlog);
+ $user = Auth::User();
+ if($modelo) {
+    $comments = Blog::find($idBlog)->comments;
+    foreach ($comments as $comment) {
+      $user = Comment::find($comment['idUser'])->user;
+      $comment->{"nombreUsuario"} = $user['name'];
+      $comment->{"avatar"} = $user['avatar'];
+  }
+
+  $modelo->{"comments"} = $comments;
+    	//echo $modelo;
+  if(isset($user)) {
+    return view('detalleBlog', ['blog' => $modelo, 'usuario' =>$user]);
+} else {
+    return view('detalleBlog', ['blog' => $modelo]);
+}
 
 } else {
     return view('lobby');

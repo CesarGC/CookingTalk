@@ -43,10 +43,14 @@
         <ul id="blogLobbyList">
             @foreach($recetas as $receta)
                 <li class="w3-row w3-margin w3-white w3-round w3-card-4 blogLobbyItem">
-                    <p class="autorBlogLink"><a href="">Autor del blog</a></p>
+                    <p class="autorBlogLink"><a href="">{{$receta->user->name}}</a></p>
                     <a href="/detalleBlog/{{ $receta->idBlog }}">
                     <div class="w3-third">
-                      <img src="img_5terre.jpg" style="width:100%;min-height:200px" />
+                    @if(!empty($receta['imagen']))
+                    <img src="{{$receta['imagen']}}" id="logotipoCookingTalks" class="imgLogotipo" alt="Volver al lobby">
+                      @else
+                    <img src="" id="logotipoCookingTalks" class="imgLogotipo" alt="Volver al lobby" style="width: 72px; height: 72px">
+                    @endif
                     </div>
                     <div class="w3-twothird w3-container">
                        <h2>{{ $receta->title }}</h2>
