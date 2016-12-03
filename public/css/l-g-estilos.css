@@ -152,7 +152,7 @@ a{
 #campoBusqueda{
     display: inline-block;
     vertical-align: middle;
-    width: 75%;
+    width: 70%;
     height: 43px;
     padding: 6px 16px;
     font-size: 18px;
@@ -314,4 +314,13 @@ a{
     display: inline-block;
     vertical-align: middle;
     margin: 0 5px;
+}
+#blogLobbyList{
+    margin:0;
+    overflow: auto;
+    padding-top: 117px;
+    list-style-type: none;
+}
+#blogLobbyList .blogLobbyItem{
+    padding: 10px;
 }

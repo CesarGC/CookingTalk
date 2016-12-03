@@ -40,7 +40,22 @@
             </div>
         </div>
         <div id="lobbyBlogs">
-
+        <ul id="blogLobbyList">
+            @foreach($recetas as $receta)
+                <li class="w3-row w3-margin w3-white w3-round w3-card-4 blogLobbyItem">
+                    <p class="autorBlogLink"><a href="">Autor del blog</a></p>
+                    <a href="/detalleBlog/{{ $receta->idBlog }}">
+                    <div class="w3-third">
+                      <img src="img_5terre.jpg" style="width:100%;min-height:200px" />
+                    </div>
+                    <div class="w3-twothird w3-container">
+                       <h2>{{ $receta->title }}</h2>
+                       <p>{{ $receta->summary }}</p>
+                    </div>
+                    </a>
+                </li>
+            @endforeach
+        </ul>
         </div>
     </div>
 </div>
