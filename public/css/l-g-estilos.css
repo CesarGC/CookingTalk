@@ -165,7 +165,7 @@ a{
     background-color: cornflowerblue;
 }
 .headerPerfil{
-    padding: 10px 25px;
+    padding: 10px 16px;
     background-color: #fff!important;
     color: cornflowerblue!important;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19)!important;
@@ -257,13 +257,13 @@ a{
     vertical-align: middle;
 }
 #contenedorCreacionBlog{
-    max-width: 1048px;
-    margin: 25px auto;
+    margin: 25px 16px;
     padding: 10px;
     background-color: #fff;
     border-radius: 10px;
 }
 #contenedorBtnCrearBlog{
+    clear: both;
     text-align: center;
 }
 #contenedorBtnCrearBlog .itemCrearBlog{
@@ -323,4 +323,7 @@ a{
 }
 #blogLobbyList .blogLobbyItem{
     padding: 10px;
+}
+.camposImgBlog{
+    width: 100%;
 }

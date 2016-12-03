@@ -1,15 +1,15 @@
 <html>
-<HEAD>
+<head>
  <meta name="token" id="token" value="{{ csrf_token() }}">
  <link href="/css/l-g-estilos.css" rel="stylesheet">
  <link href="/css/w3.css" rel="stylesheet">
  <link href="/css/font-awesome.min.css" rel="stylesheet">
-</HEAD>
+</head>
 <body>
 
   <div id="contenedorBlog">
     <header class="headerPerfil w3-animate-top">
-    <div class="headerTitle"><h1>{{ $blog['title'] }}</h1></div>
+    <div class="headerTitle w3-panel w3-light-grey w3-border w3-round w3-text-blue w3-border-blue"><h1>{{ $blog['title'] }}</h1></div>
     <div class="headerTitle logoSide">
       <div class="logotipoPerfil">
         <a href="{{ url('/lobby') }}">
@@ -27,16 +27,18 @@
     <div class="blogImgItem">
     </div>
   </div>
-  <div class="w3-twothird w3-white w3-round w3-animate-right">
+  <div class="w3-twothird w3-white w3-round w3-animate-right w3-card-4">
     <!--<a>{{ $blog['title'] }}</a>
     <br>
     <br>-->
-    <div id="contenedorBlogSummary" class="w3-border-bottom">
+    <div id="contenedorBlogSummary" class="w3-panel w3-pale-green w3-topbar w3-bottombar w3-border-green">
       <h1>{{ $blog['summary'] }}</h1>
     </div>
     <br>
+    <span id="contenedorBlogAuthor" class="w3-boder-bottom">Por : <a href="/" class="w3-btn w3-panel w3-padding-4 w3-orange w3-text-white w3-round">Nombre del Author</a></span>
     <br>
-    <div id="contenedorBlogContent">
+    <br>
+    <div id="contenedorBlogContent" class="w3-panel w3-border w3-border-green w3-pale-green">
       <p>{{ $blog['content'] }}</p>
     </div>
   </div>
