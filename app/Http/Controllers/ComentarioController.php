@@ -31,7 +31,7 @@ class ComentarioController extends Controller
 
 		$user = Comment::find($modelo->idUser)->user;
 		$modelo->{"nombreUsuario"} = $user['name'];
-
+		$modelo->{"avatar"} = $user['avatar'];
 		return response($modelo,200);
 	}
     //

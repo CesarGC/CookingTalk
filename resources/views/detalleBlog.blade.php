@@ -48,8 +48,14 @@
     </div>
     <div id="divButton" class="userCommentario"> 
       <br>
-      <div style="width:60px; height:60px; border: 1px solid; display: inline-block;"></div>
-      <textarea id="comentarioNuevo" rows="4" cols="50" placeholder="Escribe un comentario"></textarea>
+      <div style="width:60px; height:60px; border: 1px solid; display: inline-block;">
+        <img  style='width:60px; height:60px; object-fit: contain' src="data:{{$usuario['avatar']}};base64,{{$usuario['avatar']}}"/>
+      </div>
+      @if(empty($usuario['avatar']))
+        <textarea id="comentarioNuevo" disabled rows="4" cols="50" placeholder="Escribe un comentario"></textarea>
+      @else
+        <textarea id="comentarioNuevo" rows="4" cols="50" placeholder="Escribe un comentario"></textarea>
+      @endif
       <br>
       <button v-on:click="insertarCommentario(blog)" class="w3-btn w3-deep-orange"> Publicar </button>
 
@@ -57,7 +63,7 @@
     <ul files="{{ $blog['comments'] }}" id="example-1" class="w3-ul w3-card-4">
       <li v-for="item in items" class="w3-padding-16 w3-white">
         <div class="w3-left w3-margin-right" style="width:60px; height:60px; border:1px solid;">
-          <img  style='background-color: #00ff00;  width:60px; height:60px; object-fit: contain' src="data:@{{item['avatar']}};base64,@{{item['avatar']}}"/>
+          <img  style='width:60px; height:60px; object-fit: contain' src="data:@{{item['avatar']}};base64,@{{item['avatar']}}"/>
         </div>
         <a href="" class="w3-xlarge"> @{{ item['nombreUsuario']}} </a>
         <span href=""> @{{ item['created_at']}} </span>
