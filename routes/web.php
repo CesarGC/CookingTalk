@@ -38,9 +38,11 @@ Route::group(array('before' => 'auth'), function() {
 
 Route::get('/perfil', 'PerfilController@modificarDatos');
 
-Route::get('/lobby', function () {
+/*Route::get('/lobby', function () {
     return view('lobby', ['name' => 'César']);
-});
+});*/
+
+Route::get('/lobby', 'BlogController@mostrarLobby');
 
 Route::get('/listadoRecetas', 'BlogController@mostrarListado');
 
