@@ -41,6 +41,7 @@
         </div>
         <div id="lobbyBlogs">
         <ul id="blogLobbyList">
+        @if(!empty($recetas))
             @foreach($recetas as $receta)
                 <li class="w3-row w3-margin w3-white w3-round w3-card-4 blogLobbyItem">
                     <p class="autorBlogLink"><a href="">{{$receta->user->name}}</a></p>
@@ -59,6 +60,7 @@
                     </a>
                 </li>
             @endforeach
+            @endif
         </ul>
         </div>
     </div>

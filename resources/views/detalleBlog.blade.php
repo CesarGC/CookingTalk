@@ -21,10 +21,29 @@
   <div id="contenedorMainBlog" class="w3-row-padding">
   <div class="w3-third w3-animate-left">
     <div class="blogImgItem">
+    @if(empty($blog['imagenes']))
+          <i class="fa fa-user-circle-o fa-5x" area-hidden="true"></i>
+          @else
+          <img style="width: 100%; height: 100%" src="{{$blog['imagenes'][0]->urlImage}}">
+          @endif
     </div>
     <div class="blogImgItem">
+    @if(empty($blog['imagenes']))
+    <i class="fa fa-user-circle-o fa-5x" area-hidden="true"></i>
+    @else
+    @if(count($blog['imagenes']) > 1)
+    <img style="width: 100%; height: 100%" src="{{$blog['imagenes'][1]->urlImage}}">
+    @endif
+    @endif
     </div>
     <div class="blogImgItem">
+    @if(empty($blog['imagenes']))
+    <i class="fa fa-user-circle-o fa-5x" area-hidden="true"></i>
+    @else
+    @if(count($blog['imagenes']) > 2)
+    <img style="width: 100%; height: 100%" src="{{$blog['imagenes'][2]->urlImage}}">
+    @endif
+    @endif
     </div>
   </div>
   <div class="w3-twothird w3-white w3-round w3-animate-right w3-card-4">
@@ -35,7 +54,7 @@
       <h1>{{ $blog['summary'] }}</h1>
     </div>
     <br>
-    <span id="contenedorBlogAuthor" class="w3-boder-bottom">Por : <a href="/" class="w3-btn w3-panel w3-padding-4 w3-orange w3-text-white w3-round">Nombre del Author</a></span>
+    <span id="contenedorBlogAuthor" class="w3-boder-bottom">Por : <a href="/" class="w3-btn w3-panel w3-padding-4 w3-orange w3-text-white w3-round">{{$blog->userBlog->name}}</a></span>
     <br>
     <br>
     <div id="contenedorBlogContent" class="w3-panel w3-border w3-border-green w3-pale-green">
@@ -51,7 +70,9 @@
     <div id="divButton" class="userCommentario"> 
       <br>
       <div style="width:60px; height:60px; border: 1px solid; display: inline-block;">
+      @if(!empty($usuario['avatar']))
         <img  style='width:60px; height:60px; object-fit: contain' src="data:{{$usuario['avatar']}};base64,{{$usuario['avatar']}}"/>
+      @endif
       </div>
       @if(empty($usuario['avatar']))
         <textarea id="comentarioNuevo" disabled rows="4" cols="50" placeholder="Escribe un comentario"></textarea>

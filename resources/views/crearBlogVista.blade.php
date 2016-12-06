@@ -32,7 +32,7 @@
 		}
 		?>
 
-		{{ Form::open(array('url' => 'listadoRecetas', 'method' => 'POST')) }}
+		{{ Form::open(array('url' => 'listadoRecetas', 'method' => 'POST', 'files'=>true)) }}
 		<div class="w3-third w3-animate-left w3-padding-right">
 			<p>
 				<label class="auxCampoCrearBlog w3-text-green w3-white w3-leftbar w3-border w3-border-green"><i class="fa fa-spoon fa-2x" aria-hidden="true"></i> Muestras de la receta:</label>
