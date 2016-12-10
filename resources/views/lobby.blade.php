@@ -35,12 +35,42 @@
                 </a>
             </div>
             <div class="contenedorBusqueda campoHeader">
-                <input type="text" id="campoBusqueda" class="w3-leftbar w3-pale-gray w3-text-grey"/>
+                {{ Form::open(array('url' => 'busqueda', 'method' => 'GET')) }}
+                {{ Form::text('busqueda', null, array(
+                    'class' => 'w3-leftbar w3-pale-gray w3-text-grey',
+                    'id' => 'campoBusqueda',
+                    'placeholder' => 'Ingrese una palabra para la busqueda',
+                    'required'
+                    ))
+                }}
                 <button id="btnBuscarData" class="w3-btn w3-round w3-white w3-text-green w3-border w3-hover-blue w3-hover-text-white w3-hover-border-white"><i class="fa fa-search fa-2x btnBuscarBlogItem"></i><span class="btnBuscarBlogItem btnBuscarBlogTitulo">Buscar</span></button>
+                {{ Form::close() }}
             </div>
         </div>
         <div id="lobbyBlogs">
         <ul id="blogLobbyList">
+        @if(!empty($blogDatos))
+        <li  id="resultadoHeader" class="w3-pale-blue w3-border w3-border-blue w3-padding"><div class="campoResultadoBusqueda"><span>Resultados de búsqueda:</span></div><div id="btnRegresarLobby" class="campoResultadoBusqueda"><a href="{{ url('/lobby') }}" class="w3-btn w3-green"><i class="fa fa-arrow-circle-o-left fa-3x resultadoItem" aria-hidden="true"></i><span class="resultadoItem"> Regresar al Lobby</span></a></div></li>
+        @foreach($blogDatos as $blogData)
+        <li class="w3-row w3-margin w3-white w3-round w3-card-4 blogLobbyItem">
+            <p class="autorBlogLink"><a href="">{{$blogData->user->name}}</a></p>
+            <a href="/detalleBlog/{{ $blogData->idBlog }}">
+                <div class="w3-third">
+                    @if(!empty($blogData['imagen']))
+                    <img src="{{$blogData['imagen']}}" id="logotipoCookingTalks" class="imgLogotipo" alt="Volver al lobby">
+                    @else
+                    <img src="" id="logotipoCookingTalks" class="imgLogotipo" alt="Volver al lobby" style="width: 72px; height: 72px">
+                    @endif
+                </div>
+                <div class="w3-twothird w3-container">
+                    <h2>{{ $blogData->title }}</h2>
+                    <p>{{ $blogData->summary }}</p>
+                </div>
+            </a>
+        </li>
+        @endforeach
+        @endif
+
         @if(!empty($recetas))
             @foreach($recetas as $receta)
                 <li class="w3-row w3-margin w3-white w3-round w3-card-4 blogLobbyItem">

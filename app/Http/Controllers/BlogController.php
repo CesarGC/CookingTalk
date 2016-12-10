@@ -98,6 +98,23 @@ public function mostrarLobby() {
 return view('lobby', ['recetas' => $recetas]);
 }
 
+public function mostrarBusqueda(){
+  $input = Input::get('busqueda');
+  if($input !== ""){
+  $blogDatos = Blog::where('title', 'LIKE', '%'.$input.'%')->orWhere('summary', 'LIKE', '%'.$input.'%')->orWhere('content', 'LIKE', '%'.$input.'%')->get();
+  foreach($blogDatos as $blogDato) {
+     $blogDato{'user'} = Users::find($blogDato->idUser);
+        $imagenes = Image::where('idBlog', $blogDato->idBlog)->first();
+        if($imagenes !== null) {
+            $blogDato{'imagen'} = $imagenes->urlImage;
+        } else {
+            $blogDato{'imagen'} = null;
+        }
+  }
+  return view('lobby', ['blogDatos' => $blogDatos]);
+  }
+}
+
 public function mostrarListado() {
  $recetas = DB::table('Blog')->get();
  return view('listadoRecetas', ['recetas' => $recetas]);

@@ -46,6 +46,8 @@ Route::get('/perfil', 'PerfilController@modificarDatos');
 
 Route::get('/lobby', 'BlogController@mostrarLobby');
 
+Route::get('busqueda', 'BlogController@mostrarBusqueda');
+
 Route::get('/listadoRecetas', 'BlogController@mostrarListado');
 
 Route::get('/detalleBlog/{detalle}', 'BlogController@mostrarDetalle');
