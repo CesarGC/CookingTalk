@@ -54,9 +54,11 @@ Route::post('/listadoRecetas', 'BlogController@insertarBlog')->middleware('auth'
 
 Route::post('/crearComentario', 'ComentarioController@insertarComment')->middleware('auth');
 
-Route::post('/editarPerfil', 'PerfilController@editarPerfil');
+Route::post('/editarPerfil', 'PerfilController@editarPerfil')->middleware('auth');
 
 Route::delete('/listadoRecetas/{receta}', 'BlogController@borrarBlog');
+
+Route::delete('/borrarReceta/{receta}', 'BlogController@borrarBlog');
 
 Route::put('/listadoRecetas/{receta}', 'BlogController@actualizarBlog');
 

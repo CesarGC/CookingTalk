@@ -24,7 +24,7 @@
     @if(empty($blog['imagenes']))
           <i class="fa fa-user-circle-o fa-5x" area-hidden="true"></i>
           @else
-          <img style="width: 100%; height: 100%" src="{{$blog['imagenes'][0]->urlImage}}">
+          <img style="width: 100%; height: 100%" src="/{{$blog['imagenes'][0]->urlImage}}">
           @endif
     </div>
     <div class="blogImgItem">
@@ -32,7 +32,7 @@
     <i class="fa fa-user-circle-o fa-5x" area-hidden="true"></i>
     @else
     @if(count($blog['imagenes']) > 1)
-    <img style="width: 100%; height: 100%" src="{{$blog['imagenes'][1]->urlImage}}">
+    <img style="width: 100%; height: 100%" src="/{{$blog['imagenes'][1]->urlImage}}">
     @endif
     @endif
     </div>
@@ -41,7 +41,7 @@
     <i class="fa fa-user-circle-o fa-5x" area-hidden="true"></i>
     @else
     @if(count($blog['imagenes']) > 2)
-    <img style="width: 100%; height: 100%" src="{{$blog['imagenes'][2]->urlImage}}">
+    <img style="width: 100%; height: 100%" src="/{{$blog['imagenes'][2]->urlImage}}">
     @endif
     @endif
     </div>
