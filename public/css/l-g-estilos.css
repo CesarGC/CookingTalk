@@ -327,3 +327,20 @@ a{
 .camposImgBlog{
     width: 100%;
 }
+#resultadoHeader{
+    font-size: 16px;
+    width: 98.5%;
+}
+.campoResultadoBusqueda{
+    display: inline-block;
+    width: 50%;
+    vertical-align: middle;
+}
+#btnRegresarLobby{
+    text-align: right;
+}
+.resultadoItem{
+    display: inline-block;
+    vertical-align: middle;
+    margin:0 2.5px;
+}
