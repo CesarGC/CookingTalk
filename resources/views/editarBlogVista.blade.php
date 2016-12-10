@@ -30,7 +30,7 @@
 		</div>
 	</header>
 	<div id="contenedorEdicionBlog" class="w3-container w3-card-4 w3-light-grey w3-animate-bottom">
-		{{ Form::open(['url' => ['listadoRecetas', $blog['id']], 'method' => 'PUT']) }}
+		{{ Form::open(['url' => ['listadoRecetas', $blog['id']], 'method' => 'PUT', 'files'=>true]) }}
 		<div class="w3-third w3-animate-left w3-padding-right">
 			<p>
 				<label class="auxCampoCrearBlog w3-text-green w3-white w3-leftbar w3-border w3-border-green"><i class="fa fa-spoon fa-2x" aria-hidden="true"></i> Muestras de la receta:</label>

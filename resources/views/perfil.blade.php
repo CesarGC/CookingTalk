@@ -43,29 +43,47 @@
 			}}
 		</p>
 		<p>
-			<label class="labelPerfil w3-text-deep-orange">Correo electrónico :</label> <br>
-			{{ Form::text('correo', $usuario['email'], array(
+			<label class="labelPerfil w3-text-deep-orange">Apellidos :</label> <br>
+			{{ Form::text('apellido', $usuario['lastName'], array(
 			'class' => 'camposPerfil',
 			'id' => '',
-			'placeholder' => 'Correo electrónico',
+			'placeholder' => 'Apellidos',
 			))
 		}}
 	</p>
-	<div class="btnOpcionesPerfil">
-		<p class="btnOpc opcActualizar">
-			<button type="submit" id="btnActualizarPerfil" class="btnCambiarData w3-round w3-green w3-hover-deep-orange"><i class="fa fa-pencil-square fa-2x itemDataChange" aria-hidden="true"></i> <span class="itemDataChange">Actualizar</span></button>
-		</p>
-		<p class="btnOpc opcCambiatContra">
-			<button id="btnActiaulizarContra" class="btnCambiarData w3-round w3-green w3-hover-deep-orange"><i class="fa fa-exchange fa-2x itemDataChange" aria-hidden="true"></i> <span class="itemDataChange">Cambiar contraseña</span></button>
-		</p>
-	</div>
-	{{ Form::close() }}
+	<p>
+		<label class="labelPerfil w3-text-deep-orange">Correo electrónico :</label> <br>
+		{{ Form::text('correo', $usuario['email'], array(
+		'class' => 'camposPerfil',
+		'id' => '',
+		'placeholder' => 'Correo electrónico',
+		))
+	}}
+</p>
+<p>
+	<label class="labelPerfil w3-text-deep-orange">Fecha nacimiento :</label> <br>
+	{{ Form::text('fecha', $usuario['birthName'], array(
+	'class' => 'camposPerfil',
+	'id' => '',
+	'placeholder' => 'Fecha Nacimiento',
+	))
+}}
+</p>
+<div class="btnOpcionesPerfil">
+	<p class="btnOpc opcActualizar">
+		<button type="submit" id="btnActualizarPerfil" class="btnCambiarData w3-round w3-green w3-hover-deep-orange"><i class="fa fa-pencil-square fa-2x itemDataChange" aria-hidden="true"></i> <span class="itemDataChange">Actualizar</span></button>
+	</p>
+	<p class="btnOpc opcCambiatContra">
+		<button id="btnActiaulizarContra" class="btnCambiarData w3-round w3-green w3-hover-deep-orange"><i class="fa fa-exchange fa-2x itemDataChange" aria-hidden="true"></i> <span class="itemDataChange">Cambiar contraseña</span></button>
+	</p>
+</div>
+{{ Form::close() }}
 </div>
 <div id="listadoBlogsUsuarios" class="w3-col w3-container m7 l8">
 	<ul id="blogLobbyList">
 		@if(!empty($recetas))
 		<li v-for="receta in recetas" class="w3-row w3-margin w3-white w3-round w3-card-4 blogLobbyItem">
-			<button v-on:click="insertarCommentario(blog)" class="w3-btn w3-deep-orange"> Editar blog </button>
+			<a href="/editarBlogVista/@{{receta['idBlog']}}" class="w3-btn w3-deep-orange"> Editar blog </a>
 			<button v-on:click="borrarBlog(receta)" class="w3-btn w3-deep-orange"> Borrar blog </button>
 			<a href="/detalleBlog/@{{receta->idBlog }}">
 				<div class="w3-third">
@@ -110,20 +128,20 @@
 					console.log(data);
 				}).then((response) => {
 
-    response.status;
-    response.statusText;
-    response.headers.get('Expires');
-    var index = 0;
-    if(response != '-1') {
-    for (var i = 0; i < currency.length; i++) {
-    	if(currency[i].idBlog == parseInt(response.body)) {
-    		index = i;
-    	}
-    }
-    currency.splice(index, 1);
+					response.status;
+					response.statusText;
+					response.headers.get('Expires');
+					var index = 0;
+					if(response != '-1') {
+						for (var i = 0; i < currency.length; i++) {
+							if(currency[i].idBlog == parseInt(response.body)) {
+								index = i;
+							}
+						}
+						currency.splice(index, 1);
     //currency.push(response.body);
-    }
-    console.log(index);
+}
+console.log(index);
 }, (response) => {
 	console.log(response)
     // error callback

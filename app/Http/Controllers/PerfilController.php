@@ -28,13 +28,29 @@ class PerfilController extends Controller
 		return view('perfil', ['usuario' => $user, 'recetas' => $recetas]);
 	}
 
-		public function editarPerfil() {
-			$user = Auth::User();
-			$datos = Input::all();
-			$f = Input::file('thefile');
-			$att = Users::find($user['id']);
+	public function editarPerfil() {
+		$user = Auth::User();
+		$datos = Input::all();
+		$f = Input::file('thefile');
+		$att = Users::find($user['id']);
+		if (Input::hasFile('thefile')) {
 			$att->avatar = base64_encode(file_get_contents($f->getRealPath()));
-			echo var_dump($att);
-			$att->save();
 		}
+		$att->lastName = $datos['apellido'];
+		$att->birthName = $datos['fecha'];
+		$att->save();
+
+		$recetas = Blog::where('idUser', $user->id)->get();
+		$imagenes;
+		foreach ($recetas as $receta) {
+			$receta{'user'} = Users::find($receta->idUser);
+			$imagenes = Image::where('idBlog', $receta->idBlog)->first();
+			if($imagenes !== null) {
+				$receta{'imagen'} = $imagenes->urlImage;
+			} else {
+				$receta{'imagen'} = null;
+			}
+		}
+		return view('perfil', ['usuario' => $user, 'recetas' => $recetas]);
 	}
+}

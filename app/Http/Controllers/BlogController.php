@@ -27,41 +27,41 @@ class BlogController extends Controller
 
     public function insertarBlog() {
     	//dd(Input::all());
-     $user = Auth::User();
-     $datos = Input::all();
-     $now = new DateTime();
-     $modelo = new Blog;
-     $categoria = (int)$datos['idCategory'];
-     $categoria++;
-     $modelo->title = $datos['title'];
-     $modelo->summary = $datos['summary'];
-     $modelo->idUser = $user->id;
-     $modelo->content = $datos['content'];
-     $modelo->idCategoria = $categoria;
+       $user = Auth::User();
+       $datos = Input::all();
+       $now = new DateTime();
+       $modelo = new Blog;
+       $categoria = (int)$datos['idCategory'];
+       $categoria++;
+       $modelo->title = $datos['title'];
+       $modelo->summary = $datos['summary'];
+       $modelo->idUser = $user->id;
+       $modelo->content = $datos['content'];
+       $modelo->idCategoria = $categoria;
 
        //$modelo->category = 'comida mexicana';
-     $modelo->save();
-     if (Input::hasFile('foto1'))
-     {
-         $foto = Input::file('foto1');
-         $imageName = $modelo->title . '.' . 
-         $foto->getClientOriginalExtension();
+       $modelo->save();
+       if (Input::hasFile('foto1'))
+       {
+           $foto = Input::file('foto1');
+           $imageName = $modelo->title . '.' . 
+           $foto->getClientOriginalExtension();
 
-         $foto->move(
+           $foto->move(
             base_path() . '/public/imagenes', $imageName
             );
-         $image = new Image;
-         $image->urlImage = "imagenes/".$imageName;
-         $image->idBlog = $modelo->idBlog;
-         $image->save();
-     }
+           $image = new Image;
+           $image->urlImage = "imagenes/".$imageName;
+           $image->idBlog = $modelo->idBlog;
+           $image->save();
+       }
 
-     $vista = $this->mostrarLobby();
-     return $vista;
+       $vista = $this->mostrarLobby();
+       return $vista;
        //echo var_dump($datos);
- }
+   }
 
- public function borrarBlog($data) {
+   public function borrarBlog($data) {
     $imagenes = Image::where('idBlog', $data)->get();
     foreach ($imagenes as $imagen) {
         $modeloImagen = Image::find($imagen->idImage);
@@ -83,9 +83,9 @@ class BlogController extends Controller
 }
 
 public function mostrarLobby() {
- $recetas = Blog::all();
- $imagenes;
- foreach ($recetas as $receta) {
+   $recetas = Blog::all();
+   $imagenes;
+   foreach ($recetas as $receta) {
     $receta{'user'} = Users::find($receta->idUser);
     $imagenes = Image::where('idBlog', $receta->idBlog)->first();
     if($imagenes !== null) {
@@ -99,17 +99,17 @@ return view('lobby', ['recetas' => $recetas]);
 }
 
 public function mostrarListado() {
- $recetas = DB::table('Blog')->get();
- return view('listadoRecetas', ['recetas' => $recetas]);
+   $recetas = DB::table('Blog')->get();
+   return view('listadoRecetas', ['recetas' => $recetas]);
 }
 
 public function mostrarDetalle($idBlog) {
- $modelo = Blog::find($idBlog);
- $user = Auth::User();
+   $modelo = Blog::find($idBlog);
+   $user = Auth::User();
 
- if($modelo !== null) {
-     $userBlog = Users::find($modelo->idUser);
-     if($userBlog !== null) {
+   if($modelo !== null) {
+       $userBlog = Users::find($modelo->idUser);
+       if($userBlog !== null) {
         $modelo{'userBlog'} = $userBlog;
     }
     $imagenes = Image::where('idBlog', $idBlog)->get();
@@ -141,18 +141,66 @@ public function mostrarDetalle($idBlog) {
 }
 
 public function editarDetalle($data) {
- $modelo = Blog::find($data);
- return view('editarBlogVista', ['blog' => $modelo]);
+   $modelo = Blog::find($data);
+   $user = Auth::User();
+   if($modelo->idUser == $user->id) {
+       return view('editarBlogVista', ['blog' => $modelo]);
+   }
 }
 
 public function actualizarBlog($id) {
- $modelo = Blog::find($id);
- $datos = Input::all();
- if(isset($datos['title']) || $datos['title'] != ' ') {
-  $modelo->title = $datos['title'];
+   $modelo = Blog::find($id);
+   $datos = Input::all();
+   if(isset($datos['title']) || $datos['title'] != ' ') {
+      $modelo->title = $datos['title'];
+  }
+  if(isset($datos['summary']) || $datos['summary'] != ' ') {
+      $modelo->summary = $datos['summary'];
+  }
+  if(isset($datos['content']) || $datos['content'] != ' ') {
+      $modelo->content = $datos['content'];
+  }
+  if (Input::hasFile('fotoEdit1')) {
+   $foto = Input::file('fotoEdit1');
+   $imageName = $modelo->title . '.' . 
+   $foto->getClientOriginalExtension();
+
+   $foto->move(
+    base_path() . '/public/imagenes', $imageName
+    );
+   $image = new Image;
+   $image->urlImage = "imagenes/".$imageName;
+   $image->idBlog = $modelo->idBlog;
+   $image->save();
+}
+if (Input::hasFile('fotoEdit2')) {
+   $foto = Input::file('fotoEdit2');
+   $imageName = $modelo->title . '.' . 
+   $foto->getClientOriginalExtension();
+
+   $foto->move(
+    base_path() . '/public/imagenes', $imageName
+    );
+   $image = new Image;
+   $image->urlImage = "imagenes/".$imageName;
+   $image->idBlog = $modelo->idBlog;
+   $image->save();
+}
+if (Input::hasFile('fotoEdit3')) {
+   $foto = Input::file('fotoEdit3');
+   $imageName = $modelo->title . '.' . 
+   $foto->getClientOriginalExtension();
+
+   $foto->move(
+    base_path() . '/public/imagenes', $imageName
+    );
+   $image = new Image;
+   $image->urlImage = "imagenes/".$imageName;
+   $image->idBlog = $modelo->idBlog;
+   $image->save();
 }
 
 $modelo->save();
-echo $id;
+return view('detalleBlog/'.$modelo->idBlog);
 }
 }
